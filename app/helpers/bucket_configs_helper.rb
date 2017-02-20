@@ -1,0 +1,2 @@
+module BucketConfigsHelper
+end

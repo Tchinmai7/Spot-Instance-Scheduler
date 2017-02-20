@@ -17,7 +17,7 @@ class AwsKeysControllerTest < ActionDispatch::IntegrationTest
 
   test "should create aws_key" do
     assert_difference('AwsKey.count') do
-      post aws_keys_url, params: { aws_key: { accessKey: @aws_key.accessKey, default: @aws_key.default, name: @aws_key.name, region: @aws_key.region, secretKey: @aws_key.secretKey } }
+      post aws_keys_url, params: { aws_key: { accessKey: @aws_key.accessKey, default: @aws_key.default, name: @aws_key.name, region: @aws_key.region, secretKey: @aws_key.secretKey, user_id: @aws_key.user_id } }
     end
 
     assert_redirected_to aws_key_url(AwsKey.last)
@@ -34,7 +34,7 @@ class AwsKeysControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update aws_key" do
-    patch aws_key_url(@aws_key), params: { aws_key: { accessKey: @aws_key.accessKey, default: @aws_key.default, name: @aws_key.name, region: @aws_key.region, secretKey: @aws_key.secretKey } }
+    patch aws_key_url(@aws_key), params: { aws_key: { accessKey: @aws_key.accessKey, default: @aws_key.default, name: @aws_key.name, region: @aws_key.region, secretKey: @aws_key.secretKey, user_id: @aws_key.user_id } }
     assert_redirected_to aws_key_url(@aws_key)
   end
 

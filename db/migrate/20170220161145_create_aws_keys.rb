@@ -6,7 +6,7 @@ class CreateAwsKeys < ActiveRecord::Migration[5.0]
       t.string :secretKey
       t.string :region
       t.boolean :default
-
+      t.references :user, foreign_key: true
       t.timestamps
     end
   end

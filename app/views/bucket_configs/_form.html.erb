@@ -1,0 +1,37 @@
+<%= form_for(bucket_config) do |f| %>
+  <% if bucket_config.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bucket_config.errors.count, "error") %> prohibited this bucket_config from being saved:</h2>
+
+      <ul>
+      <% bucket_config.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bucketname %>
+    <%= f.text_field :bucketname %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Service Name" %>
+    <%= f.text_field :servicename %>
+  </div>
+
+  <div class="field">
+    <%= f.label :region %>
+    <%= f.select :region, ['us-east-1', 'us-west-2','us-west-1','eu-west-1','eu-central-1','ap-southeast-1','ap-northeast-1','ap-southeast-2','ap-northeast-1','sa-east-1']  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

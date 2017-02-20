@@ -1,0 +1,1 @@
+json.partial! "bucket_configs/bucket_config", bucket_config: @bucket_config

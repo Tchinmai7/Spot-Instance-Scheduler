@@ -1,18 +1,10 @@
-
-
 <h1>Welcome to Optimzed Transcoder </h1>
-
 <p> This is a application that automates the transcoding process.</p><p> Along with this we do optimization of cost by making the most of amazon spot instance.</p><p>Login / SignUp
   to continue
 </p>
-
-
-
-
-
-
 <% if user_signed_in? %>
-  <% else %>
+        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+<% else %>
 
 
 

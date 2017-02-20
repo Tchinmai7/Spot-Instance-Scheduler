@@ -10,6 +10,7 @@
       <th>Secretkey</th>
       <th>Region</th>
       <th>Default</th>
+      <th>User</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -22,6 +23,7 @@
         <td><%= aws_key.secretKey %></td>
         <td><%= aws_key.region %></td>
         <td><%= aws_key.default %></td>
+        <td><%= aws_key.user %></td>
         <td><%= link_to 'Show', aws_key %></td>
         <td><%= link_to 'Edit', edit_aws_key_path(aws_key) %></td>
         <td><%= link_to 'Destroy', aws_key, method: :delete, data: { confirm: 'Are you sure?' } %></td>

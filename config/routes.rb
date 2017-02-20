@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :aws_keys
+  resources :bucket_configs
   get 'welcome/home'
   root 'welcome#home'
   devise_for :users, controllers: { registrations: "registrations" }

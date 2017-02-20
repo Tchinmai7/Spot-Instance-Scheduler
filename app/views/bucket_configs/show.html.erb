@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bucketname:</strong>
+  <%= @bucket_config.bucketname %>
+</p>
+
+<p>
+  <strong>Servicename:</strong>
+  <%= @bucket_config.servicename %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @bucket_config.region %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @bucket_config.user %>
+</p>
+
+<%= link_to 'Edit', edit_bucket_config_path(@bucket_config) %> |
+<%= link_to 'Back', bucket_configs_path %>

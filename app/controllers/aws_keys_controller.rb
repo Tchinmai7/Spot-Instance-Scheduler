@@ -25,7 +25,7 @@ class AwsKeysController < ApplicationController
   # POST /aws_keys.json
   def create
     @aws_key = AwsKey.new(aws_key_params)
-
+     @aws_key.user_id=current_user.id
     respond_to do |format|
       if @aws_key.save
         format.html { redirect_to @aws_key, notice: 'Aws key was successfully created.' }
@@ -69,6 +69,6 @@ class AwsKeysController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def aws_key_params
-      params.require(:aws_key).permit(:name, :accessKey, :secretKey, :region, :default)
+      params.require(:aws_key).permit(:name, :accessKey, :secretKey, :region, :default, :user_id)
     end
 end

@@ -1,0 +1,1 @@
+json.array! @bucket_configs, partial: 'bucket_configs/bucket_config', as: :bucket_config
