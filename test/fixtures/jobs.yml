@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  servicename: MyString
+  singlecontainer: false
+  resourcepath: MyString
+  command: MyString
+  user: one
+
+two:
+  servicename: MyString
+  singlecontainer: false
+  resourcepath: MyString
+  command: MyString
+  user: two

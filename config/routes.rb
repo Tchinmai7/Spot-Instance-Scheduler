@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :jobs
   resources :aws_keys
   resources :bucket_configs
   get 'welcome/home'

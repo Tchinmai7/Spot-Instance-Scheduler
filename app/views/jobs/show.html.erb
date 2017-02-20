@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Servicename:</strong>
+  <%= @job.servicename %>
+</p>
+
+<p>
+  <strong>Singlecontainer:</strong>
+  <%= @job.singlecontainer %>
+</p>
+
+<p>
+  <strong>Resourcepath:</strong>
+  <%= @job.resourcepath %>
+</p>
+
+<p>
+  <strong>Command:</strong>
+  <%= @job.command %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @job.user %>
+</p>
+
+<%= link_to 'Edit', edit_job_path(@job) %> |
+<%= link_to 'Back', jobs_path %>

@@ -1,0 +1,43 @@
+<%= form_for(job) do |f| %>
+  <% if job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+      <ul>
+      <% job.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :servicename %>
+    <%= f.text_field :servicename %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Single Container? " %>
+    <%= f.check_box :singlecontainer %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Enter docker image name or path to docker-compose" %>
+    <%= f.label "Only images in DockerHub are supported" %>
+    <%= f.text_field :resourcepath %>
+  </div>
+
+  <div class="field">
+    <%= f.label :command %>
+    <%= f.text_field :command %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
