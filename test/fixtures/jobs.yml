@@ -5,6 +5,7 @@ one:
   singlecontainer: false
   resourcepath: MyString
   command: MyString
+  machine_type: MyString
   user: one
 
 two:
@@ -12,4 +13,5 @@ two:
   singlecontainer: false
   resourcepath: MyString
   command: MyString
+  machine_type: MyString
   user: two

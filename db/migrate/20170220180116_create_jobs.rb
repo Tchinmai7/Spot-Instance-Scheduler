@@ -5,6 +5,7 @@ class CreateJobs < ActiveRecord::Migration[5.0]
       t.boolean :singlecontainer
       t.string :resourcepath
       t.string :command
+      t.string :machine_type
       t.references :user, foreign_key: true
 
       t.timestamps

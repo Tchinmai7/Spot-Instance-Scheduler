@@ -25,7 +25,7 @@ class JobsController < ApplicationController
   # POST /jobs.json
   def create
     @job = Job.new(job_params)
-
+    @job.user_id = current_user
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
@@ -69,6 +69,6 @@ class JobsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def job_params
-      params.require(:job).permit(:servicename, :singlecontainer, :resourcepath, :command, :user_id)
+      params.require(:job).permit(:servicename, :singlecontainer, :resourcepath, :command, :machine_type, :user_id)
     end
 end

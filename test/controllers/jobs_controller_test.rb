@@ -17,7 +17,7 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create job" do
     assert_difference('Job.count') do
-      post jobs_url, params: { job: { command: @job.command, resourcepath: @job.resourcepath, servicename: @job.servicename, singlecontainer: @job.singlecontainer, user_id: @job.user_id } }
+      post jobs_url, params: { job: { command: @job.command, machine_type: @job.machine_type, resourcepath: @job.resourcepath, servicename: @job.servicename, singlecontainer: @job.singlecontainer, user_id: @job.user_id } }
     end
 
     assert_redirected_to job_url(Job.last)
@@ -34,7 +34,7 @@ class JobsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update job" do
-    patch job_url(@job), params: { job: { command: @job.command, resourcepath: @job.resourcepath, servicename: @job.servicename, singlecontainer: @job.singlecontainer, user_id: @job.user_id } }
+    patch job_url(@job), params: { job: { command: @job.command, machine_type: @job.machine_type, resourcepath: @job.resourcepath, servicename: @job.servicename, singlecontainer: @job.singlecontainer, user_id: @job.user_id } }
     assert_redirected_to job_url(@job)
   end
 

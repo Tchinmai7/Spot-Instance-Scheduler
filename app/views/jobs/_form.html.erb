@@ -17,13 +17,13 @@
   </div>
 
   <div class="field">
-    <%= f.label "Single Container? " %>
+    <%= f.label :singlecontainer %>
     <%= f.check_box :singlecontainer %>
   </div>
 
   <div class="field">
-    <%= f.label "Enter docker image name or path to docker-compose" %>
-    <%= f.label "Only images in DockerHub are supported" %>
+    <%= f.label "Enter Docker image name on DockerHub or" %>
+    <%= f.label "Enter path to docker-compose file" %>
     <%= f.text_field :resourcepath %>
   </div>
 
@@ -33,9 +33,10 @@
   </div>
 
   <div class="field">
-    <%= f.label :user_id %>
-    <%= f.text_field :user_id %>
+    <%= f.label :machine_type %>
+    <%= f.text_field :machine_type %>
   </div>
+
 
   <div class="actions">
     <%= f.submit %>
