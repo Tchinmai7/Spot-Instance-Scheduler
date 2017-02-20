@@ -1,0 +1,1 @@
+json.partial! "aws_keys/aws_key", aws_key: @aws_key

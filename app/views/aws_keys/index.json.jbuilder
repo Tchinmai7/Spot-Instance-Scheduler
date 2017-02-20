@@ -1,0 +1,1 @@
+json.array! @aws_keys, partial: 'aws_keys/aws_key', as: :aws_key

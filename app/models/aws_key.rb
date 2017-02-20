@@ -1,0 +1,2 @@
+class AwsKey < ApplicationRecord
+end

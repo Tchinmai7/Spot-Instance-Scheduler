@@ -1,0 +1,13 @@
+db:
+  image: mariadb
+  environment:
+    MYSQL_ROOT_PASSWORD: sidhanth 
+web:
+  build: . 
+  command: bundle exec rails s -p 8080 -b '0.0.0.0' 
+  ports:
+    - "8080:8080"
+  links:
+    - db
+  volumes:
+    - .:/myapp
