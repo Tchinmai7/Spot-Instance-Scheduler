@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @aws_key.name %>
+</p>
+
+<p>
+  <strong>Accesskey:</strong>
+  <%= @aws_key.accessKey %>
+</p>
+
+<p>
+  <strong>Secretkey:</strong>
+  <%= @aws_key.secretKey %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= @aws_key.region %>
+</p>
+
+<p>
+  <strong>Default:</strong>
+  <%= @aws_key.default %>
+</p>
+
+<%= link_to 'Edit', edit_aws_key_path(@aws_key) %> |
+<%= link_to 'Back', aws_keys_path %>
+<%= link_to 'Next',  {controller: "bucket_configs", action: "new"}  %>

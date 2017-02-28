@@ -15,10 +15,7 @@
   <%= @bucket_config.region %>
 </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @bucket_config.user %>
-</p>
 
 <%= link_to 'Edit', edit_bucket_config_path(@bucket_config) %> |
 <%= link_to 'Back', bucket_configs_path %>
+<%= link_to 'Next', job_path %>

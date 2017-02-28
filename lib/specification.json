@@ -1,0 +1,16 @@
+{
+  "ImageId": "ami-0103cd62",
+  "InstanceType": "r3.xlarge",
+  "Placement": {
+    "AvailabilityZone": "ap-southeast-1b"
+  },
+  "KeyName": "recoproject",
+  "NetworkInterfaces": [
+    {
+      "DeviceIndex": 0,
+      "SubnetId": "subnet-50aa5827",
+      "Groups": [ "sg-44d53f20" ], 
+      "AssociatePublicIpAddress": true
+    }
+  ]
+}

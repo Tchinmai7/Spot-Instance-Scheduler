@@ -25,7 +25,7 @@ class JobsController < ApplicationController
   # POST /jobs.json
   def create
     @job = Job.new(job_params)
-    @job.user_id = current_user
+    @job.user_id = current_user.id
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
@@ -35,6 +35,12 @@ class JobsController < ApplicationController
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
     end
+    aws_key = current_user.aws_keys
+    region = aws_key.last.region
+    accessKey = aws_key.last.accessKey
+    secretKey = aws_key.last.secretKey
+    job.prepare_config(region,accessKey,secretKey)
+    job.start_job(current_user,region,@job.instance_type)
   end
 
   # PATCH/PUT /jobs/1
@@ -49,6 +55,12 @@ class JobsController < ApplicationController
         format.json { render json: @job.errors, status: :unprocessable_entity }
       end
     end
+    aws_key = current_user.aws_keys
+    region = aws_key.last.region
+    accessKey = aws_key.last.accessKey
+    secretKey = aws_key.last.secretKey
+    job.prepare_config(region,accessKey,secretKey)
+    job.start_job(current_user,region,@job.machine_type)
   end
 
   # DELETE /jobs/1
