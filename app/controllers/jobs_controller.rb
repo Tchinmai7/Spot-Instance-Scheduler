@@ -39,8 +39,8 @@ class JobsController < ApplicationController
     region = aws_key.last.region
     accessKey = aws_key.last.accessKey
     secretKey = aws_key.last.secretKey
-    job.prepare_config(region,accessKey,secretKey)
-    job.start_job(current_user,region,@job.instance_type)
+    Job.prepare_config(region,accessKey,secretKey)
+    Job.start_job(current_user,region,@job.machine_type)
   end
 
   # PATCH/PUT /jobs/1
