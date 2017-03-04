@@ -13,13 +13,14 @@ require 'aws-sdk'
                  credentials: Aws::Credentials.new(@akid, @secret)
          )
         cost = current_user.optimal_cost_function("lib/awshistory.json","lib/festivels.csv",1)
-        #TODO: Create Subnet, Security Group, Group, KeyPair, ImageID?
+        #TODO: Create Subnet, Security Group, Group, ImageID?
+        system("aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > lib/#{current_user.name}.pem")
         resp = client.request_spot_instances({
             instance_count: 1, 
             launch_specification: {
             image_id: "ami-1a2b3c4d", 
             instance_type: "#{instance_type}", 
-            key_name: "my-key-pair", 
+            key_name: "lib/#{current_user.name}.pem", 
             placement: {
                 availability_zone: "#{region}", 
             }, 
