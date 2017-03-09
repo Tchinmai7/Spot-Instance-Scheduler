@@ -7,18 +7,41 @@ require 'aws-sdk'
      @akid = akid
      @secret = secret
    end
+   
+   def get_image_id (region)
+    case region
+        when "ap-northeast-1"
+            return "ami-d8acfdbf"
+        when "us-east-1"
+            return "ami-9dde7f8b"
+        when "us-west-1"
+            return "ami-9d772efd"
+        when "eu-west-1"
+            return "ami-115d7777"
+        when "eu-central-1"
+            return "ami-6039ed0f"
+        when "ap-southeast-1"
+            return "ami-30cf7c53"
+        when "ap-southeast-2"
+            return "ami-cdcdcfae"
+        when "sa-east-1"
+            return "ami-0c731260"
+    end
+   end
+   
    def self.start_job (current_user,region,instance_type)
          ec2 = Aws::EC2::Client.new(
                  region: @region,
                  credentials: Aws::Credentials.new(@akid, @secret)
          )
         cost = current_user.optimal_cost_function("lib/awshistory.json","lib/festivels.csv",1)
-        #TODO: Create Subnet, Security Group, Group, ImageID?
+        #TODO: Create Subnet, Security Group, Group?
         system("aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > lib/#{current_user.name}.pem")
-        resp = client.request_spot_instances({
+        imageid = get_image_id(region)
+        resp = ec2.request_spot_instances({
             instance_count: 1, 
             launch_specification: {
-            image_id: "ami-1a2b3c4d", 
+            image_id: "#{imageid}", 
             instance_type: "#{instance_type}", 
             key_name: "lib/#{current_user.name}.pem", 
             placement: {
