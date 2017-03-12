@@ -35,8 +35,13 @@ require 'aws-sdk'
                  credentials: Aws::Credentials.new(@akid, @secret)
          )
         cost = current_user.optimal_cost_function("lib/awshistory.json","lib/festivels.csv",1)
-        #TODO: Create Subnet, Security Group, Group?
+        #TODO: Create Subnet,Group?
         system("aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > lib/#{current_user.name}.pem")
+        system("aws ec2 create-security-group --group-name #{current_user.name} --description #{current_user.name} > lib/security_group.txt")
+        file = open("lib/security_group.txt")
+        json = file.read
+        hash = JSON.parse json
+        group_id = hash["GroupId"]
         imageid = get_image_id(region)
         resp = ec2.request_spot_instances({
             instance_count: 1, 
@@ -48,7 +53,7 @@ require 'aws-sdk'
                 availability_zone: "#{region}", 
             }, 
         security_group_ids: [
-            "sg-1a2b3c4d", 
+            "#{group_id}", 
         ], 
         "network_interfaces": [
             {
