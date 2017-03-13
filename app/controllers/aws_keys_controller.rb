@@ -35,6 +35,16 @@ class AwsKeysController < ApplicationController
         format.json { render json: @aws_key.errors, status: :unprocessable_entity }
       end
     end
+    f=open("/root/.aws/config","a")
+    f.puts("[#{@aws_key.name}]")
+    f.puts("region = #{@aws_key.region}")
+    f.puts("output = json")
+    f.close
+    f=open("/root/.aws/credentials","a")
+    f.puts("[#{@aws_key.name}]")
+    f.puts("aws_access_key_id = #{@aws_key.accessKey}")
+    f.puts("aws_secret_access_key = #{@aws_key.SecretKey}")
+    f.close
   end
 
   # PATCH/PUT /aws_keys/1
@@ -49,6 +59,16 @@ class AwsKeysController < ApplicationController
         format.json { render json: @aws_key.errors, status: :unprocessable_entity }
       end
     end
+    f=open("/root/.aws/config","a")
+    f.puts("[#{@aws_key.name}]")
+    f.puts("region = #{@aws_key.region}")
+    f.puts("output = json")
+    f.close
+    f=open("/root/.aws/credentials","a")
+    f.puts("[#{@aws_key.name}]")
+    f.puts("aws_access_key_id = #{@aws_key.accessKey}")
+    f.puts("aws_secret_access_key = #{@aws_key.SecretKey}")
+    f.close
   end
 
   # DELETE /aws_keys/1

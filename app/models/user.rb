@@ -59,6 +59,9 @@ class User < ApplicationRecord
 		# from this we gonna find the min spot price and max spot price also
 		min_price = 1.0
 		max_price = 0.0
+        if parsed["SpotPriceHistory"].empty? 
+            return 1
+        end
 		parsed["SpotPriceHistory"].each do |shop|
 		value = shop["SpotPrice"]
 		value = value.to_f
