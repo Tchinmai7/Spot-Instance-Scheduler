@@ -34,6 +34,8 @@ require 'aws-sdk'
                  region: @region,
                  credentials: Aws::Credentials.new(@akid, @secret)
          )
+        system("lib/cron.sh #{instance_type} #{region}")
+        sleep (180)
         cost = current_user.optimal_cost_function("lib/awshistory.json","lib/festivels.csv",1)
         #TODO: Create Subnet,Group?
         system("aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > lib/#{current_user.name}.pem")
@@ -58,8 +60,8 @@ require 'aws-sdk'
         "network_interfaces": [
             {
             "device_index": 0,
-            "subnet_id": "subnet-50aa5827",
-            "groups": [ "sg-44d53f20" ],
+       #     "subnet_id": "subnet-50aa5827",
+       #    "groups": [ "sg-44d53f20" ],
             "associate_public_ip_address": true
         }
         ]
@@ -67,6 +69,7 @@ require 'aws-sdk'
             spot_price: "#{cost}", 
             type: "one-time", 
         })
+        puts resp
         #current_user.delay.call_spot_instances(1,region,instance_type)
    end
  end
