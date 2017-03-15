@@ -8,6 +8,7 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 gem 'aws-sdk', '~> 2'
 gem 'daemons'
 gem 'delayed_job_active_record'
+
 gem 'nio4r', '~> 1.2.1'
 
 # Use SCSS for stylesheets
