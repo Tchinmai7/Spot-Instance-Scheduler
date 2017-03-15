@@ -9,7 +9,7 @@ gem 'aws-sdk', '~> 2'
 gem 'daemons'
 gem 'delayed_job_active_record'
 
-gem 'nio4r', '~> 1.2.1'
+gem 'nio4r'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
