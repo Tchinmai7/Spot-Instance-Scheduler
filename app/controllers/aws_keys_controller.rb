@@ -91,4 +91,5 @@ class AwsKeysController < ApplicationController
     def aws_key_params
       params.require(:aws_key).permit(:name, :accessKey, :secretKey, :region, :default, :user_id)
     end
+
 end
