@@ -35,14 +35,14 @@ class AwsKeysController < ApplicationController
         format.json { render json: @aws_key.errors, status: :unprocessable_entity }
       end
     end
-    directory_name = ENV['HOME']+"/.aws/"
+    directory_name = "/home/ec2-user/.aws/"
     Dir.mkdir(directory_name) unless File.exists?(directory_name)
-    f=open(ENV['HOME']+"/.aws/config","a")
+    f=open("/home/ec2-user/.aws/config","a")
     f.puts("[#{@aws_key.name}]")
     f.puts("region = #{@aws_key.region}")
     f.puts("output = json")
     f.close
-    f=open(ENV['HOME']+"/.aws/credentials","a")
+    f=open("/home/ec2-user/.aws/credentials","a")
     f.puts("[#{@aws_key.name}]")
     f.puts("aws_access_key_id = #{@aws_key.accessKey}")
     f.puts("aws_secret_access_key = #{@aws_key.SecretKey}")
@@ -61,12 +61,14 @@ class AwsKeysController < ApplicationController
         format.json { render json: @aws_key.errors, status: :unprocessable_entity }
       end
     end
-    f=open(ENV['HOME']+"/.aws/config","a")
+    directory_name = "/home/ec2-user/.aws/"
+    Dir.mkdir(directory_name) unless File.exists?(directory_name)
+    f=open("/home/ec2-user/.aws/config","a")
     f.puts("[#{@aws_key.name}]")
     f.puts("region = #{@aws_key.region}")
     f.puts("output = json")
     f.close
-    f=open(ENV['HOME']+"/.aws/credentials","a")
+    f=open("/home/ec2-user/.aws/credentials","a")
     f.puts("[#{@aws_key.name}]")
     f.puts("aws_access_key_id = #{@aws_key.accessKey}")
     f.puts("aws_secret_access_key = #{@aws_key.SecretKey}")
