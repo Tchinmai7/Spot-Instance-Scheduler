@@ -35,6 +35,8 @@ class AwsKeysController < ApplicationController
         format.json { render json: @aws_key.errors, status: :unprocessable_entity }
       end
     end
+    directory_name = ENV['HOME']+"/.aws/"
+    Dir.mkdir(directory_name) unless File.exists?(directory_name)
     f=open(ENV['HOME']+"/.aws/config","a")
     f.puts("[#{@aws_key.name}]")
     f.puts("region = #{@aws_key.region}")
