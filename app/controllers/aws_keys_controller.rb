@@ -35,8 +35,6 @@ class AwsKeysController < ApplicationController
         format.json { render json: @aws_key.errors, status: :unprocessable_entity }
       end
     end
-    directory_name = "/home/ec2-user/.aws/"
-    Dir.mkdir(directory_name) unless File.exists?(directory_name)
     f=open("/home/ec2-user/.aws/config","a")
     f.puts("[#{@aws_key.name}]")
     f.puts("region = #{@aws_key.region}")
@@ -61,8 +59,6 @@ class AwsKeysController < ApplicationController
         format.json { render json: @aws_key.errors, status: :unprocessable_entity }
       end
     end
-    directory_name = "/home/ec2-user/.aws/"
-    Dir.mkdir(directory_name) unless File.exists?(directory_name)
     f=open("/home/ec2-user/.aws/config","a")
     f.puts("[#{@aws_key.name}]")
     f.puts("region = #{@aws_key.region}")
