@@ -38,8 +38,8 @@ require 'aws-sdk'
         sleep (180)
         cost = current_user.optimal_cost_function("lib/awshistory.json","lib/festivels.csv",1)
         #TODO: Create Subnet,Group?
-        system("aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > lib/#{current_user.name}.pem")
-        system("aws ec2 create-security-group --group-name #{current_user.name} --description #{current_user.name} > lib/security_group.txt")
+        system("aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > lib/#{current_user.id}.pem")
+        system("aws ec2 create-security-group --group-name #{current_user.id} --description #{current_user.id} > lib/security_group.txt")
         file = open("lib/security_group.txt")
         json = file.read
         hash = JSON.parse json
@@ -50,7 +50,7 @@ require 'aws-sdk'
             launch_specification: {
             image_id: "#{imageid}", 
             instance_type: "#{instance_type}", 
-            key_name: "lib/#{current_user.name}.pem", 
+            key_name: "lib/#{current_user.id}.pem", 
             placement: {
                 availability_zone: "#{region}", 
             }, 
