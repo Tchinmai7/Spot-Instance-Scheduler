@@ -52,6 +52,9 @@ class User < ApplicationRecord
 		avg_cost = 12
 		file = open(price_File)
 		json = file.read
+        if json.empty? 
+            return 1
+        end
 		parsed = JSON.parse(json)
 		total = 0.0
 		counter = 0
