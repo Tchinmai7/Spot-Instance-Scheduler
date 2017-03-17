@@ -37,7 +37,7 @@ class AwsKeysController < ApplicationController
     end
     system("export AWS_DEFAULT_REGION=#{@aws_key.region}")
     system("export AWS_ACCESS_KEY_ID=#{@aws_key.accessKey}")
-    system("export AWS_SECRET_ACCESS_KEY=#{@aws_key.SecretKey}")
+    system("export AWS_SECRET_ACCESS_KEY=#{@aws_key.secretKey}")
   end
 
   # PATCH/PUT /aws_keys/1
@@ -54,7 +54,7 @@ class AwsKeysController < ApplicationController
     end
     system("export AWS_DEFAULT_REGION=#{@aws_key.region}")
     system("export AWS_ACCESS_KEY_ID=#{@aws_key.accessKey}")
-    system("export AWS_SECRET_ACCESS_KEY=#{@aws_key.SecretKey}")
+    system("export AWS_SECRET_ACCESS_KEY=#{@aws_key.secretKey}")
   end
 
   # DELETE /aws_keys/1
