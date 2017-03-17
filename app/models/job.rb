@@ -29,10 +29,10 @@ require 'aws-sdk'
     end
    end
    
-   def self.start_job (current_user,region,instance_type)
+   def self.start_job (current_user,region,instance_type,akid,secret)
          ec2 = Aws::EC2::Client.new(
-                 region: @region,
-                 credentials: Aws::Credentials.new(@akid, @secret)
+                 region: region,
+                 credentials: Aws::Credentials.new(akid, secret)
          )
         system("lib/cron.sh #{instance_type} #{region}")
         sleep (180)

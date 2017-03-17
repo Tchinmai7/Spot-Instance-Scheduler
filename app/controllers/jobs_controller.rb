@@ -39,8 +39,7 @@ class JobsController < ApplicationController
     region = aws_key.last.region
     accessKey = aws_key.last.accessKey
     secretKey = aws_key.last.secretKey
-    Job.prepare_config(region,accessKey,secretKey)
-    Job.delay.start_job(current_user,region,@job.machine_type)
+    Job.delay.start_job(current_user,region,@job.machine_type, accessKey,secretKey)
   end
 
   # PATCH/PUT /jobs/1
@@ -59,8 +58,7 @@ class JobsController < ApplicationController
     region = aws_key.last.region
     accessKey = aws_key.last.accessKey
     secretKey = aws_key.last.secretKey
-    Job.prepare_config(region,accessKey,secretKey)
-    Job.delay.start_job(current_user,region,@job.machine_type)
+    Job.delay.start_job(current_user,region,@job.machine_type,accessKey,secretKey)
   end
 
   # DELETE /jobs/1
