@@ -36,7 +36,7 @@ class AwsKeysController < ApplicationController
       end
     end
     system("export AWS_DEFAULT_REGION=#{@aws_key.region}")
-    system("export AWS_ACCESS_KEY_ID=#{aws_key.accessKey}")
+    system("export AWS_ACCESS_KEY_ID=#{@aws_key.accessKey}")
     system("export AWS_SECRET_ACCESS_KEY=#{@aws_key.SecretKey}")
   end
 
@@ -53,7 +53,7 @@ class AwsKeysController < ApplicationController
       end
     end
     system("export AWS_DEFAULT_REGION=#{@aws_key.region}")
-    system("export AWS_ACCESS_KEY_ID=#{aws_key.accessKey}")
+    system("export AWS_ACCESS_KEY_ID=#{@aws_key.accessKey}")
     system("export AWS_SECRET_ACCESS_KEY=#{@aws_key.SecretKey}")
   end
 
