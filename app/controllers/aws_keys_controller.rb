@@ -35,16 +35,9 @@ class AwsKeysController < ApplicationController
         format.json { render json: @aws_key.errors, status: :unprocessable_entity }
       end
     end
-    f=open("/home/ec2-user/.aws/config","a")
-    f.puts("[#{@aws_key.name}]")
-    f.puts("region = #{@aws_key.region}")
-    f.puts("output = json")
-    f.close
-    f=open("/home/ec2-user/.aws/credentials","a")
-    f.puts("[#{@aws_key.name}]")
-    f.puts("aws_access_key_id = #{@aws_key.accessKey}")
-    f.puts("aws_secret_access_key = #{@aws_key.SecretKey}")
-    f.close
+    system("export AWS_DEFAULT_REGION=#{@aws_key.region}")
+    system("export AWS_ACCESS_KEY_ID=#{aws_key.accessKey}")
+    system("export AWS_SECRET_ACCESS_KEY=#{@aws_key.SecretKey}")
   end
 
   # PATCH/PUT /aws_keys/1
@@ -59,16 +52,9 @@ class AwsKeysController < ApplicationController
         format.json { render json: @aws_key.errors, status: :unprocessable_entity }
       end
     end
-    f=open("/home/ec2-user/.aws/config","a")
-    f.puts("[#{@aws_key.name}]")
-    f.puts("region = #{@aws_key.region}")
-    f.puts("output = json")
-    f.close
-    f=open("/home/ec2-user/.aws/credentials","a")
-    f.puts("[#{@aws_key.name}]")
-    f.puts("aws_access_key_id = #{@aws_key.accessKey}")
-    f.puts("aws_secret_access_key = #{@aws_key.SecretKey}")
-    f.close
+    system("export AWS_DEFAULT_REGION=#{@aws_key.region}")
+    system("export AWS_ACCESS_KEY_ID=#{aws_key.accessKey}")
+    system("export AWS_SECRET_ACCESS_KEY=#{@aws_key.SecretKey}")
   end
 
   # DELETE /aws_keys/1
