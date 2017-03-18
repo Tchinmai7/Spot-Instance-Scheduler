@@ -6,9 +6,8 @@ require 'aws-sdk'
      @region = region
      @akid = akid
      @secret = secret
-   end
-   
-   def get_image_id (region)
+   end 
+   def self.get_image_id (region)
     case region
         when "ap-northeast-1"
             return "ami-d8acfdbf"
