@@ -34,7 +34,10 @@ require 'aws-sdk'
                  region: region,
                  credentials: Aws::Credentials.new(akid, secret)
          )
-        system("lib/cron.sh #{instance_type}a #{region}")
+        #system("lib/cron.sh #{instance_type} #{region}")
+        system("newDate=$(date +%Y-%m-%dT%H:%M:%S); 
+               oldDate=$(date --date='80 days ago' +%Y-%m-%dT%H:%M:%S);
+               aws ec2 describe-spot-price-history --instance-types #{instance_type}a  --product-description \"Linux/UNIX (Amazon VPC)\" --availability-zone #{region}  --start-time $oldDate --end-time $newDate > lib/awshistory.json")
         sleep (180)
         cost = current_user.optimal_cost_function("lib/awshistory.json","lib/festivels.csv",1)
         #TODO: Create Subnet,Group?
