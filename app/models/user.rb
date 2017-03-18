@@ -39,7 +39,7 @@ class User < ApplicationRecord
 	system("sudo aws ec2 terminate-instances --instance-ids #{instance_id}")
 	end 
 
-	def optimal_cost_function(price_File,date_file,max_Cost)
+	def optimal_cost_function(price_File,max_Cost)
 		# getting the current date from the system in the dd/mm/yy format not yyyy
 		currDate = Time.now.strftime("%d/%m/%y")
 		 # the real data needed from the 90 days. take the least value
@@ -81,13 +81,6 @@ class User < ApplicationRecord
 		#festivels is hardcoded values of festivels if its equal
 		#then you need to use the data of the previous day
 		#since its going to be constant
-		CSV.foreach(date_file) do |row|
-		  puts row.inspect
-  			if row.inspect == "[\""+currDate+"\"]"
-			    optimal_cost = value
-			    return value
-  			end
-		end
 		#puts "Enter 1 if you want to finish it quickly else 0 if you are a cheapfuck and can wait"
 		#choice = gets
 		  #So no the user wants the thing done quickly so he is ready to pay extra also

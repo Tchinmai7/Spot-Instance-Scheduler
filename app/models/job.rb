@@ -37,9 +37,9 @@ require 'aws-sdk'
         system("newDate=$(date +%Y-%m-%dT%H:%M:%S); 
                oldDate=$(date --date='80 days ago' +%Y-%m-%dT%H:%M:%S);
                aws ec2 describe-spot-price-history --instance-types #{instance_type}  --product-description \"Linux/UNIX (Amazon VPC)\" --availability-zone #{region}a  --start-time $oldDate --end-time $newDate > lib/awshistory.json")
-        #system("lib/cron.sh #{instance_type} #{region}")
+        system("lib/cron.sh #{instance_type} #{region}a")
         sleep (180)
-        cost = current_user.optimal_cost_function("lib/awshistory.json","lib/festivels.csv",1)
+        cost = current_user.optimal_cost_function("lib/awshistory.json",1)
         #TODO: Create Subnet,Group?
         puts cost
         system("aws ec2 create-key-pair --key-name MyKeyPair --query 'KeyMaterial' --output text > lib/#{current_user.id}.pem")
