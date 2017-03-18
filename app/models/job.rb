@@ -54,7 +54,7 @@ require 'aws-sdk'
             launch_specification: {
             image_id: "#{imageid}", 
             instance_type: "#{instance_type}", 
-            key_name: "#{current_user.id}.pem", 
+            key_name: "#{current_user.id}", 
             placement: {
                 availability_zone: "#{region}a", 
             }, 
