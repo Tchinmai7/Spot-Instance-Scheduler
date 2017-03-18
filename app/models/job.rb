@@ -56,7 +56,7 @@ require 'aws-sdk'
             instance_type: "#{instance_type}", 
             key_name: "lib/#{current_user.id}.pem", 
             placement: {
-                availability_zone: "#{region}", 
+                availability_zone: "#{region}a", 
             }, 
         security_group_ids: [
             "#{group_id}", 
