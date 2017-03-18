@@ -35,7 +35,7 @@ require 'aws-sdk'
          )
         system("newDate=$(date +%Y-%m-%dT%H:%M:%S); 
                oldDate=$(date --date='80 days ago' +%Y-%m-%dT%H:%M:%S);
-               aws ec2 describe-spot-price-history --instance-types #{instance_type}  --product-description \"Linux/UNIX (Amazon VPC)\" --availability-zone #{region}a  --start-time $oldDate --end-time $newDate > lib/awshistory.json")
+               aws ec2 describe-spot-price-history --instance-types #{instance_type}  --product-description \"Linux/UNIX (Amazon VPC)\" --availability-zone #{region}  --start-time $oldDate --end-time $newDate > lib/awshistory.json")
         system("lib/cron.sh #{instance_type} #{region}a")
         sleep (300)
         cost = current_user.optimal_cost_function("lib/awshistory.json",1)
@@ -56,7 +56,7 @@ require 'aws-sdk'
             instance_type: "#{instance_type}", 
             key_name: "lib/#{current_user.id}.pem", 
             placement: {
-                availability_zone: "#{region}a", 
+                availability_zone: "#{region}", 
             }, 
         security_group_ids: [
             "#{group_id}", 
