@@ -43,7 +43,7 @@ require 'aws-sdk'
         puts cost
         system("aws ec2 create-key-pair --key-name #{current_user.id} --query 'KeyMaterial' --output text > lib/#{current_user.id}.pem")
         system("aws ec2 create-security-group --group-name #{current_user.id} --description #{current_user.id} > lib/security_group.txt")
-        sleep(180)
+        sleep(300)
         file = open("lib/security_group.txt")
         json = file.read
         hash = JSON.parse json
