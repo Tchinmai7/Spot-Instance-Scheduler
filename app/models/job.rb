@@ -73,6 +73,7 @@ require 'aws-sdk'
             spot_price: "#{cost}", 
             type: "one-time", 
         })
+        Rails.logger.info "The response is #{resp}"
         puts resp
         #current_user.delay.call_spot_instances(1,region,instance_type)
    end
