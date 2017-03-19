@@ -75,12 +75,12 @@ require 'aws-sdk'
         })
         Rails.logger.info "The response is #{resp}"
         sleep(200)
-        get_instance_details(ec2)
+        get_instance_details(ec2, current_user.id)
         #current_user.delay.call_spot_instances(1,region,instance_type)
    end
    
-   def self.get_instance_details (ec2)
-    resp = ec2.describe_instances(filters:[{ name: "key-name", values: ["#{current_user.id}"] }])
+   def self.get_instance_details (ec2,uid)
+    resp = ec2.describe_instances(filters:[{ name: "key-name", values: ["#{uid}"] }])
     Rails.logger.info "the value is #{resp.reservations[0].instances[0].public_dns_name}"
    end
  end
