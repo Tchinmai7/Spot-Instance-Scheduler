@@ -74,6 +74,7 @@ require 'aws-sdk'
             type: "one-time", 
         })
         Rails.logger.info "The response is #{resp}"
+        sleep(200)
         get_instance_details(ec2)
         #current_user.delay.call_spot_instances(1,region,instance_type)
    end
