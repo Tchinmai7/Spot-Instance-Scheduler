@@ -33,17 +33,17 @@ require 'aws-sdk'
                  region: region,
                  credentials: Aws::Credentials.new(akid, secret)
          )
-        system("newDate=$(date +%Y-%m-%dT%H:%M:%S); 
-               oldDate=$(date --date='80 days ago' +%Y-%m-%dT%H:%M:%S);
-               aws ec2 describe-spot-price-history --instance-types #{instance_type}  --product-description \"Linux/UNIX (Amazon VPC)\" --availability-zone #{region}a --start-time $oldDate --end-time $newDate > lib/awshistory.json")
+        #system("newDate=$(date +%Y-%m-%dT%H:%M:%S); 
+         #oldDate=$(date --date='80 days ago' +%Y-%m-%dT%H:%M:%S);
+          #aws ec2 describe-spot-price-history --instance-types #{instance_type}  --product-description \"Linux/UNIX (Amazon VPC)\" --availability-zone #{region}a --start-time $oldDate --end-time $newDate > lib/awshistory.json")
         system("lib/cron.sh #{instance_type} #{region}a")
-        sleep (300)
+        #sleep (300)
         cost = current_user.optimal_cost_function("lib/awshistory.json",1)
         #TODO: Create Subnet,Group?
         puts cost
         system("aws ec2 create-key-pair --key-name #{current_user.id} --query 'KeyMaterial' --output text > lib/#{current_user.id}.pem")
         system("aws ec2 create-security-group --group-name #{current_user.id} --description #{current_user.id} > lib/security_group.txt")
-        sleep(300)
+        sleep(100)
         file = open("lib/security_group.txt")
         json = file.read
         hash = JSON.parse json
