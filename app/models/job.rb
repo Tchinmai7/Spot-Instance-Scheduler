@@ -75,6 +75,7 @@ require 'aws-sdk'
         })
         Rails.logger.info "The response is #{resp}"
         sleep(200)
+        Rails.logger.info "Woke up from sleep. About to print values"
         get_instance_details(ec2, current_user.id)
         #current_user.delay.call_spot_instances(1,region,instance_type)
    end
