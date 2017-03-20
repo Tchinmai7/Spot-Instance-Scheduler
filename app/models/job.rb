@@ -1,3 +1,7 @@
+require 'net/ssh'
+require "rubygems"
+require "json"
+require 'csv'
 require 'aws-sdk'
  class Job < ApplicationRecord
    belongs_to :user
@@ -28,7 +32,7 @@ require 'aws-sdk'
     end
    end
    
-   def self.start_job (current_user,region,instance_type,akid,secret)
+   def self.start_job (current_user,region,instance_type,akid,secret,image,command)
          ec2 = Aws::EC2::Client.new(
                  region: region,
                  credentials: Aws::Credentials.new(akid, secret)
@@ -76,12 +80,20 @@ require 'aws-sdk'
         Rails.logger.info "The response is #{resp}"
         sleep(200)
         Rails.logger.info "Woke up from sleep. About to print values"
-        get_instance_details(ec2, current_user.id)
+        dns_name = get_instance_details(ec2, current_user.id)
+        ssh_and_run(dns_name, image, command, current_user.id)
         #current_user.delay.call_spot_instances(1,region,instance_type)
    end
    
    def self.get_instance_details (ec2,uid)
     resp = ec2.describe_instances(filters:[{ name: "key-name", values: ["#{uid}"] }])
     Rails.logger.info "the value is #{resp.reservations[0].instances[0].public_dns_name}"
+    return resp.reservations[0].instances[0].public_dns_name
+   end
+
+   def self.ssh_and_run(dns_name,image,command,uid)
+    system("scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i lib/#{uid}.pem lib/setup.sh ubuntu@#{dns_name}:~/ ")
+    Net::SSH.start(dns_name,"ubuntu", :keys => "#{uid}.pem") do|ssh|
+        output = ssh.exec "sh setup.sh #{image} #{command}"
    end
  end
