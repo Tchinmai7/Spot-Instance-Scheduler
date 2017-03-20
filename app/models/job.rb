@@ -1,7 +1,4 @@
 require 'net/ssh'
-require "rubygems"
-require "json"
-require 'csv'
 require 'aws-sdk'
  class Job < ApplicationRecord
    belongs_to :user
