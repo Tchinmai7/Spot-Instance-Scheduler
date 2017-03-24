@@ -59,14 +59,12 @@ require 'aws-sdk'
             placement: {
                 availability_zone: "#{region}a", 
             }, 
-       # security_group_ids: [
-        #    "#{group_id}", 
-        #], 
+        security_group_ids: [
+            "#{group_id}", 
+        ], 
         "network_interfaces": [
             {
             "device_index": 0,
-       #     "subnet_id": "subnet-50aa5827",
-       #    "groups": [ "sg-44d53f20" ],
             "associate_public_ip_address": true
         }
         ]
