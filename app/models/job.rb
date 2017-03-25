@@ -41,7 +41,7 @@ require 'aws-sdk'
         #sleep (300)
         cost = current_user.optimal_cost_function("lib/awshistory.json",1)
         #TODO: Create Subnet,Group?
-        puts cost
+        Rails.logger.info "The computed cost is #{cost}"
         system("aws ec2 create-key-pair --key-name #{current_user.id} --query 'KeyMaterial' --output text > lib/#{current_user.id}.pem")
         system("aws ec2 create-security-group --group-name #{current_user.id} --description #{current_user.id} > lib/security_group.txt")
         system("aws ec2 authorize-security-group-ingress --group-name #{current_user.id} --protocol all --port 0-65535 --cidr 0.0.0.0/0")
