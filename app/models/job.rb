@@ -91,5 +91,6 @@ require 'aws-sdk'
     system("scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i lib/#{uid}.pem lib/setup.sh ubuntu@#{dns_name}:~/ ")
     Net::SSH.start(dns_name,"ubuntu", :keys => "#{uid}.pem") do|ssh|
         output = ssh.exec "sh setup.sh #{image} #{command}"
+    end
    end
  end
