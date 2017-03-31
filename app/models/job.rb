@@ -1,3 +1,4 @@
+require 'rubygems'
 require 'net/ssh'
 require 'aws-sdk'
 class Job < ApplicationRecord
