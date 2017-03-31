@@ -63,9 +63,6 @@ class Job < ApplicationRecord
               placement: {
               availability_zone: "#{region}a", 
           }, 
-          security_group_ids: [
-              "#{group_id}", 
-          ], 
           "network_interfaces": [
               {
               "device_index": 0,
