@@ -63,6 +63,9 @@ class Job < ApplicationRecord
               placement: {
               availability_zone: "#{region}a", 
           }, 
+          security_group_ids: [
+              "#{group_id}", 
+          ], 
           "network_interfaces": [
               {
               "device_index": 0,
@@ -77,6 +80,8 @@ class Job < ApplicationRecord
           sleep(200)
           Rails.logger.info "Woke up from sleep. About to print values"
           dns_name = get_instance_details(ec2, current_user.id)
+          sleep(200)
+          Rails.logger.info "Woke up from sleep. About to ssh and run"
           ssh_and_run(dns_name, image, command, current_user.id)
     end
 
