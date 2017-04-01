@@ -78,16 +78,17 @@ class Job < ApplicationRecord
               type: "one-time", 
           })
           Rails.logger.info "The response is #{resp}"
+          spot_instance_request_id = resp.spot_instance_requests[0].spot_instance_request_id
           sleep(200)
           Rails.logger.info "Woke up from sleep. About to print values"
-          dns_name = get_instance_details(ec2, current_user.id)
+          dns_name = get_instance_details(ec2, spot_instance_request_id)
           sleep(200)
           Rails.logger.info "Woke up from sleep. About to ssh and run"
           ssh_and_run(dns_name, image, command, current_user.id)
     end
 
-    def self.get_instance_details (ec2,uid)
-        resp = ec2.describe_instances(filters:[{ name: "key-name", values: ["#{uid}"] }])
+    def self.get_instance_details (ec2,spotid)
+        resp = ec2.describe_instances(filters:[{ name: "spot-instance-request-id", values: ["#{spotid}"] }])
         Rails.logger.info "the dump is #{resp.reservations[0].instances[0]}"
         Rails.logger.info "the value is #{resp.reservations[0].instances[0].public_dns_name}"
         return resp.reservations[0].instances[0].public_dns_name
