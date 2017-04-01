@@ -57,22 +57,23 @@ class Job < ApplicationRecord
           resp = ec2.request_spot_instances({
               instance_count: 1, 
               launch_specification: {
-              image_id: "#{imageid}", 
-              instance_type: "#{instance_type}", 
-              key_name: "#{current_user.id}", 
-              placement: {
-              availability_zone: "#{region}a", 
-          }, 
-          security_group_ids: [
-              "#{group_id}", 
-          ], 
-          "network_interfaces": [
-              {
-              "device_index": 0,
-              "associate_public_ip_address": true
-          }
-          ]
-          }, 
+                  image_id: "#{imageid}", 
+                  instance_type: "#{instance_type}", 
+                  key_name: "#{current_user.id}", 
+                  placement: {
+                    availability_zone: "#{region}a", 
+                  }, 
+                  security_group_ids: [
+                      "#{group_id}", 
+                  ]
+               #   , 
+               #  "network_interfaces": [
+               #     {
+               #         "device_index": 0,
+               #         "associate_public_ip_address": true
+               #     }
+               #   ]
+              }, 
               spot_price: "#{cost}", 
               type: "one-time", 
           })
