@@ -94,7 +94,7 @@ class Job < ApplicationRecord
 
     def self.ssh_and_run(dns_name,image,command,uid)
         system("scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i lib/#{uid}.pem lib/setup.sh ubuntu@#{dns_name}:~/ ")
-        Net::SSH.start(dns_name,"ubuntu", :keys => "#{uid}.pem") do|ssh|
+        Net::SSH.start(dns_name,"ubuntu", :keys => "lib/#{uid}.pem") do|ssh|
             output = ssh.exec "sh setup.sh #{image} #{command}"
         end
         Rails.logger.info "ssh execution done."
