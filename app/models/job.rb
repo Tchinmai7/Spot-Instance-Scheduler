@@ -88,6 +88,7 @@ class Job < ApplicationRecord
 
     def self.get_instance_details (ec2,uid)
         resp = ec2.describe_instances(filters:[{ name: "key-name", values: ["#{uid}"] }])
+        Rails.logger.info "the dump is #{resp.reservations[0].instances[0]}"
         Rails.logger.info "the value is #{resp.reservations[0].instances[0].public_dns_name}"
         return resp.reservations[0].instances[0].public_dns_name
     end
