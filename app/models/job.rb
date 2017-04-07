@@ -14,21 +14,21 @@ class Job < ApplicationRecord
     def self.get_image_id (region)
         case region
         when "ap-northeast-1"
-            return "ami-d8acfdbf"
+            return "ami-1a62467d"
         when "us-east-1"
-            return "ami-9dde7f8b"
+            return "ami-bcd95caa"
         when "us-west-1"
-            return "ami-9d772efd"
+            return "ami-e1095381"
         when "eu-west-1"
-            return "ami-115d7777"
+            return "ami-2acaf54c"
         when "eu-central-1"
-            return "ami-6039ed0f"
+            return "ami-2acaf54c"
         when "ap-southeast-1"
-            return "ami-30cf7c53"
+            return "ami-3d02be5e"
         when "ap-southeast-2"
-            return "ami-cdcdcfae"
+            return "ami-a1dfd0c2"
         when "sa-east-1"
-            return "ami-0c731260"
+            return "ami-f10c6f9d"
         end
     end
 
