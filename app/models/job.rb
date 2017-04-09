@@ -56,6 +56,9 @@ class Job < ApplicationRecord
           imageid = get_image_id(region)
           file = open("lib/install.sh")
           user_data = file.read
+          Rails.logger.info "User data is #{user_data}"
+          user_data = Base64.encode64(user_data)
+          Rails.logger.info "base64 encoded is #{user_data}"
           resp = ec2.request_spot_instances({
               instance_count: 1, 
               launch_specification: {
