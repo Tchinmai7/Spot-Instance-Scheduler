@@ -6,5 +6,5 @@ mkdir -p /etc/systemd/system/docker.service.d
 printf '[Service]\nExecStart=\nExecStart=/usr/bin/dockerd -H fd:// --experimental=true' > /etc/systemd/system/docker.service.d/docker.conf
 systemctl daemon-reload
 systemctl restart docker.service
-docker pull nginx
-docker run -d -p 80:80 nginx
+docker pull shriram2301/counter 
+docker run -d -p 80:80 shriram2301/counter
