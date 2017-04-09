@@ -54,6 +54,8 @@ class Job < ApplicationRecord
           hash = JSON.parse json
           group_id = hash["GroupId"]
           imageid = get_image_id(region)
+          file = open("lib/install.sh")
+          user_data = file.read
           resp = ec2.request_spot_instances({
               instance_count: 1, 
               launch_specification: {
@@ -65,14 +67,8 @@ class Job < ApplicationRecord
                   }, 
                   security_group_ids: [
                       "#{group_id}", 
-                  ]
-               #   , 
-               #  "network_interfaces": [
-               #     {
-               #         "device_index": 0,
-               #         "associate_public_ip_address": true
-               #     }
-               #   ]
+                  ],
+                  user_data: "#{user_data}"
               }, 
               spot_price: "#{cost}", 
               type: "one-time", 
