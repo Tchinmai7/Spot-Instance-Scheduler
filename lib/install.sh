@@ -7,4 +7,5 @@ printf '[Service]\nExecStart=\nExecStart=/usr/bin/dockerd -H fd:// --experimenta
 systemctl daemon-reload
 systemctl restart docker.service
 docker pull shriram2301/counter 
-docker run -d -p 80:80 shriram2301/counter
+docker create -p 80:80 --name nginx_counter shriram2301/counter
+docker start nginx_counter
